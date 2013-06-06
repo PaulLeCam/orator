@@ -1,0 +1,23 @@
+!!! 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    block title
+      title Orator
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="/css/main.css", rel="stylesheet")
+
+    //if lt IE 9
+      script(src="http://html5shim.googlecode.com/svn/trunk/html5.js")
+
+    link(rel="shortcut icon", href="/favicon.ico")
+    block head
+
+  body
+    block body
+
+    script
+      var App = !{ JSON.stringify(app_data) }
+
+    block script
+    script(src="/js/lib/require.js", "data-main"="/js/app.js")

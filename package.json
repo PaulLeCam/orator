@@ -1,0 +1,43 @@
+{
+  "name": "orator",
+  "version": "0.0.0",
+  "description": "Host and synchronize your Reveal.js presentations across several devices.",
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "DEBUG='* -connect:dispatcher -send' node-dev server/app.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.3",
+    "express": "~3.2.0",
+    "lodash": "*",
+    "slob": "*",
+    "jade": "~0.28.2",
+    "async": "~0.2.7",
+    "debug": "*",
+    "underscore.string": "~2.3.1",
+    "socket.io": "~0.9.14",
+    "node-uuid": "~1.4.0",
+    "underscore.deferred": "~0.4.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-coffee": "~0.6.6",
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-contrib-handlebars": "~0.5.8",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-less": "~0.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PaulLeCam/orator.git"
+  },
+  "author": "Paul Le Cam <paul@ulem.net>"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "orator",
+  "version": "0.0.0",
+  "dependencies": {
+    "slob": "*",
+    "bootstrap": "https://github.com/twitter/bootstrap/archive/3.0.0-wip.zip",
+    "reveal.js": "~2.4.0"
+  }
+}
