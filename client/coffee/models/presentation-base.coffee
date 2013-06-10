@@ -14,7 +14,6 @@ define [
 
       url = sandbox.util.result @, "url"
       io.connect url ? "/"
-      sandbox.dev.log "io emit", method, @toJSON()
       io.emit method, @toJSON(), (err, data) =>
         if err then dfd.reject err
         else

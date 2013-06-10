@@ -6,27 +6,35 @@ class CrudRouter extends Router
 
   constructor: (app, @io) ->
     super app
-    @defineIO()
 
   defineRoutes: ->
-    @app.post "/create", => @create.apply @, arguments
-
-  defineIO: ->
     @io.on "connection", (socket) =>
-      socket.on "create", => @_create.apply @, arguments
+      socket.on "create", => @create.apply @, arguments
+      socket.on "read", => @read.apply @, arguments
+      socket.on "update", => @update.apply @, arguments
+      socket.on "delete", => @delete.apply @, arguments
 
-  _create: (data = {}, next) ->
+  create: (data = {}, next) ->
     if data.slides?.length
       new Model(data).save()
-        .fail(-> next new Error "Could not save data")
-        .done (saved_data) -> next null, saved_data
+        .fail((err) -> next err)
+        .done (data) -> next null, data
     else next new Error "No slides"
 
-  create: (req, res) ->
-    @_create req.body, (err, data) ->
-      if err
-        if err.message is "No slides" then res.json 400
-        else res.json 500
-      else res.json data
+  read: (data = {}, next) ->
+    new Model(data).fetch()
+      .fail((err) -> next err)
+      .done (data) -> next null, data
+
+  update: (data = {}, next) ->
+    new Model(data).save()
+      .fail((err) -> next err)
+      .done (data) -> next null, data
+
+  delete: (data = {}, next) ->
+    new Model(data).destroy()
+      .fail((err) -> next err)
+      .done (data) -> next null, data
+
 
 module.exports = (app, io) -> new CrudRouter app, io
