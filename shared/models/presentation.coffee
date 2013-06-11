@@ -2,7 +2,6 @@ run = (BasePresentation, exp) ->
 
   exp class Presentation extends BasePresentation
 
-    store: new BasePresentation.Store
     urlRoot: "/"
 
 

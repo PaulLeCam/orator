@@ -45,9 +45,11 @@ require [
   </div>
   """
 
-  p = new Presentation().importSlides data
 
-  sandbox.dev.log "presentation", p
-  p.save()
-    .fail(-> console.error "failed")
-    .done -> console.log "presentation saved", p.toJSON()
+  sandbox.start "import", "#slides-import"
+
+  sandbox.on "import", (p) ->
+    console.log "imported presentation", p
+    # p.save()
+    #   .fail(-> console.error "failed")
+    #   .done -> console.log "presentation saved", p.toJSON()

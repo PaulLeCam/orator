@@ -1,11 +1,11 @@
 define [
-  "sandbox/component"
-], (sandbox) ->
+  "core/dom"
+], (dom) ->
 
   toJSON = (html) ->
     slides = []
-    for section in sandbox.dom.find "> section", sandbox.dom.parse html
-      subsections = sandbox.dom.find "section", section
+    for section in dom.find "> section", dom.parse html
+      subsections = dom.find "section", section
       if subsections.length then slides.push slides: (html: slide.outerHTML for slide in subsections)
       else slides.push slides: [html: section.outerHTML]
     slides

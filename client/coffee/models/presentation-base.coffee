@@ -1,18 +1,22 @@
 define [
-  "sandbox/component"
+  "core/mvc"
+  "core/promise"
+  "core/util"
+  "ext/mvc/model-cache"
   "components/slides-import"
   "services/socket"
-], (sandbox, slidesImport, io) ->
+], (mvc, promise, util, modelCache, slidesImport, io) ->
 
-  class Presentation extends sandbox.mvc.Model
+  class Presentation extends mvc.Model
 
     importSlides: (html) ->
       @set "slides", slidesImport html
+      @emit "import"
 
     sync: (method, self, options) ->
-      dfd = sandbox.deferred()
+      dfd = promise.deferred()
 
-      url = sandbox.util.result @, "url"
+      url = util.result @, "url"
       io.connect url ? "/"
       io.emit method, @toJSON(), (err, data) =>
         if err then dfd.reject err
@@ -21,3 +25,5 @@ define [
           dfd.resolve()
 
       dfd.promise()
+
+  modelCache Presentation
